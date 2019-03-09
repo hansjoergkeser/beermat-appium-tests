@@ -1,6 +1,7 @@
 # Beermat Appium Tests
 
 Appium tests showing the power of manipulating the sqlite database of an android sample app.
+
 This sample project may help QA engineers and in general developers in the android mobile app area.
 The main idea consists of saving time during taking screenshots of an Android App to be presented on the Google Play Store.
 
