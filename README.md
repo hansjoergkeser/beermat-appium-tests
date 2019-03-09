@@ -33,13 +33,15 @@ To run the tests locally:
 - download the sample app to the desktop (find it in the app folder)
 - start rooted emulator (without Play Store!)
 - start Appium server with this flag: --relaxed-security
-- run tests like StartPageTests under src/test/kotlin as JUNit tests with the following environment variable declared in the VM options:<br>
+- run tests under src/test/kotlin as JUNit tests in IntelliJ  with the following environment variable declared in the VM options:<br>
 -ea -Dapp.path=/Users/YOUR.USER/Desktop/app-debug.apk
 
 Optional:
 - start rooted emulator or rooted real device with different Android version and prepare the env variable <br>-Dandroid.version=
 - check the device name by executing "adb devices" in terminal and prepare the env variable <br>-Ddevice.name=
 - tell Appium the endpoint, whether to execute the tests locally or on other test hubs like Saucelabs, Testobject, etc. <br>-Dhub=
+- execute tests by terminal command, using the gradle wrapper of this project:<br>
+ ./gradlew test
 
 Check all possible capability and hub configurations in these classes:
  - AppiumCapabilitiesFactory
