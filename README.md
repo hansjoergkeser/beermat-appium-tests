@@ -1,8 +1,8 @@
 # Beermat Appium Tests
 
-Appium tests showing the power of manipulating the sqlite database of an android sample app.
+Appium tests showing the power of manipulating the sqlite database of an Android sample app.
 
-This sample project may help QA engineers and in general developers in the android mobile app area.
+This sample project may help QA engineers and in general developers in the Android mobile app area.
 The main idea consists of saving time during taking screenshots of an Android App to be presented on the Google Play Store.
 
 The idea for this project came up by one of the inspiring newsletters from Jonathan Lipps:
@@ -13,18 +13,44 @@ Having the debug build of the app, one can use SQL statements to manipulate thes
 
 ------
 
+# The app and the tests to make the screenshots
+
 The sample app in this project displays a beermat, having a simple notepad for how man drinks you had and the price for them.
 Given I wanted to prepare a beermat with 20 beers for 1,99 Eur in the list, I would use a standard Appium test to prepare the app:
 - Tap on the price
 - Insert new price
 - tap 19 times on the plus button
 
-(Find the mentioned app in the app folder inside the appium project.)
+(Find the mentioned app in the app folder inside the Appium project.)
 
 This takes a lot of time, so I'd prefer a shorter way by updating the related database entry according to my desired values.
 TBD
 
 ------
+# How to execute the tests
+
+To run the tests locally:
+- download the sample app to the desktop (find it in the app folder)
+- start rooted emulator (without Play Store!)
+- start Appium server with this flag: --relaxed-security
+- run tests like StartPageTests under src/test/kotlin as JUNit tests with the following environment variable declared in the VM options:<br>
+-ea -Dapp.path=/Users/YOUR.USER/Desktop/app-debug.apk
+
+Optional:
+- start rooted emulator or rooted real device with different Android version and prepare the env variable <br>-Dandroid.version=
+- check the device name by executing "adb devices" in terminal and prepare the env variable <br>-Ddevice.name=
+- tell Appium the endpoint, whether to execute the tests locally or on other test hubs like Saucelabs, Testobject, etc. <br>-Dhub=
+
+Check all possible capability and hub configurations in these classes:
+ - AppiumCapabilitiesFactory
+ - Hub
+
+Full example for the  env variables in the JUnit test configuration:<br>
+-Ddevice.name=emulator-5554 -Dandroid.version=8.1 -Dtest=SearchTests -Dapp.path=/Users/YOUR.USER/Desktop/house-booking.apk -Dhub=local
+
+------
+
+# Obstacles
 
 There were two obstacles I had to deal with:
 - it is not easy to execute a whole statement in one command line
@@ -52,7 +78,7 @@ Running '/Users/my.user/Library/Android/sdk/platform-tools/adb -P 5037 -s emulat
 <br>or like this (this command also works oddly):<br>
 Running '/Users/my.user/Library/Android/sdk/platform-tools/adb -P 5037 -s emulator-5554 shell sqlite3 /data/data/de.myapp.android/databases/myapp.db '"UPDATE [...] WHERE id = ' 1 '"''
 
-Another thing that surprised me was that the new android emulator images with Play Store included are not rooted and adb root is not possible:<br>
+Another thing that surprised me was that the new Android emulator images with Play Store included are not rooted and adb root is not possible:<br>
 Error: Cannot execute the 'sqlite3' shell command.<br>
 Original error: Command '/Users/my.user/Library/Android/sdk/platform-tools/adb -P 5037 -s emulator-5554 shell sqlite3 /data/data/de.myapp.android/databases/myapp.db '"SELECT [...]"'' exited with code 1. 
 <br>StdOut: . StdErr: Error: unable to open database "/data/data/de.myapp.android/databases/myapp.db": unable to open database file
