@@ -14,8 +14,7 @@ Having the debug build of the app, one can use SQL statements to manipulate thes
 ------
 
 The sample app in this project displays a beermat, having a simple notepad for how man drinks you had and the price for them.
-Given I wanted to prepare a beermat with 20 beers for 1,99 Eur in the list, 
-<br>I would use a standard Appium test to prepare the app:
+Given I wanted to prepare a beermat with 20 beers for 1,99 Eur in the list, I would use a standard Appium test to prepare the app:
 - Tap on the price
 - Insert new price
 - tap 19 times on the plus button
