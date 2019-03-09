@@ -9,6 +9,11 @@ repositories {
     mavenCentral()
 }
 
+test {
+    // now you can execute junit tests by terminal command: ./gradlew test
+    useJUnitPlatform()
+}
+
 dependencies {
     implementation "org.jetbrains.kotlin:kotlin-stdlib-jdk8"
     implementation "io.appium:java-client:7.0.0"
