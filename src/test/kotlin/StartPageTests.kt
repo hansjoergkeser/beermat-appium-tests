@@ -1,14 +1,13 @@
 import driverconfig.MyAppiumDriver
 import io.appium.java_client.AppiumDriver
-import org.junit.jupiter.api.AfterAll
+import org.junit.jupiter.api.*
 import org.junit.jupiter.api.Assertions.assertEquals
-import org.junit.jupiter.api.BeforeAll
-import org.junit.jupiter.api.Test
 import org.openqa.selenium.OutputType
 import org.openqa.selenium.WebElement
 import pages.StartPage
 import java.io.File
 import java.util.concurrent.TimeUnit
+import java.util.logging.Logger
 
 
 /**
@@ -16,6 +15,8 @@ import java.util.concurrent.TimeUnit
  *  @since 2019-03-09
  */
 class StartPageTests {
+
+    private val logger = Logger.getLogger(StartPageTests::class.toString())
 
     companion object {
 
@@ -39,6 +40,14 @@ class StartPageTests {
 
     }
 
+    // get test name by junit 5 test info to give the screenshot an unique title
+    @AfterEach
+    fun takeScreenshot(testInfo: TestInfo) {
+        val testName = testInfo.displayName
+        logger.info("Taking screenshot after test: [$testName]")
+        createAndSaveScreenshot(testName)
+    }
+
     // don't try this at home... or rather your local pub ;-)
     @Test
     fun `get regular customer special price and drink 20 beers`() {
@@ -52,13 +61,7 @@ class StartPageTests {
         assertEquals(expectedTotalPrice, startPage.getTotalPrice(), "Did not find the expected total price of [$expectedTotalPrice].")
     }
 
-    @Test
-    fun getStartPageScreenshot() {
-        `get regular customer special price and drink 20 beers`()
-        createScreenshot("get regular customer special price and drink 20 beers")
-    }
-
-    private fun createScreenshot(fileName: String) {
+    private fun createAndSaveScreenshot(fileName: String) {
         val screenshotByteArray = driver.getScreenshotAs(OutputType.BYTES)
         val targetDir = System.getProperty("user.home") + "/appium-screenshots/"
         File(targetDir).mkdir()
