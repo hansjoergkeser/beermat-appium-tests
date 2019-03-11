@@ -1,3 +1,4 @@
+import com.google.common.collect.ImmutableMap
 import driverconfig.MyAppiumDriver
 import io.appium.java_client.AppiumDriver
 import org.junit.jupiter.api.*
@@ -6,9 +7,9 @@ import org.openqa.selenium.OutputType
 import org.openqa.selenium.WebElement
 import pages.StartPage
 import java.io.File
+import java.util.Arrays.asList
 import java.util.concurrent.TimeUnit
 import java.util.logging.Logger
-
 
 /**
  *  @author hansjoerg.keser
@@ -50,15 +51,52 @@ class StartPageTests {
 
     // don't try this at home... or rather your local pub ;-)
     @Test
-    fun `get regular customer special price and drink 20 beers`() {
+    fun `get special price as regular customer and drink 20 beers`() {
         val startPage = StartPage()
         startPage.insertNewPrice("1.99")
         startPage.addBeers(19)
         driver.hideKeyboard()
         val expectedAmount = 20
         val expectedTotalPrice = 3980
-        assertEquals(expectedAmount, startPage.getAmount(), "Did not find the expected amount of [$expectedAmount] \uD83C\uDF7A")
-        assertEquals(expectedTotalPrice, startPage.getTotalPrice(), "Did not find the expected total price of [$expectedTotalPrice].")
+        assertEquals(
+            expectedAmount,
+            startPage.getAmount(),
+            "Did not find the expected amount of [$expectedAmount] \uD83C\uDF7A"
+        )
+        assertEquals(
+            expectedTotalPrice,
+            startPage.getTotalPrice(),
+            "Did not find the expected total price of [$expectedTotalPrice]."
+        )
+    }
+
+    @Test
+    fun `get screenshot the fast way`() {
+        updateDataInTable("20", "199", "3980")
+        StartPage().tapOnUpdateFab()
+        // wait a sec, the app has no loading indicator
+        Thread.sleep(1000)
+    }
+
+    /**
+     * check the column names by executing in terminal: adb shell 'sqlite3 /data/data/de.hajo.beermat/databases/beermat-database.db ".schema"'
+     *
+     * @amount: the amount of beers
+     * @price: the beer price;
+     * note that this column needs an int value, so remove all commas, points, etc. in the parameter string
+     * @totalPrice: the total price for all beers;
+     * note that this column needs an int value, so remove all commas, points, etc. in the parameter string
+     */
+    private fun updateDataInTable(amount: String, price: String, totalPrice: String) {
+        val updateTableArgs = asList(
+            "/data/data/de.hajo.beermat/databases/beermat-database.db",
+            "\"UPDATE Beermat SET amount = $amount, price = $price, total_price = $totalPrice\""
+        )
+        val manipulateFavouriteItemPricesCmd = ImmutableMap.of(
+            "command", "sqlite3",
+            "args", updateTableArgs
+        )
+        driver.executeScript("mobile: shell", manipulateFavouriteItemPricesCmd)
     }
 
     private fun createAndSaveScreenshot(fileName: String) {

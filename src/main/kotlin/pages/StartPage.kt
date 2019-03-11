@@ -21,6 +21,7 @@ class StartPage : AbstractPage() {
     private val removeBeerButton = id("button_reduce")
     private val price = id("et_price")
     private val totalPrice = id("tv_total_price_of_line")
+    private val fab = id("fab")
 
     fun addBeer() {
         tapOnElement(addBeerButton)
@@ -44,6 +45,10 @@ class StartPage : AbstractPage() {
 
     fun getTotalPrice(): Int {
         return getText(totalPrice).replace("[^0-9]".toRegex(), "").toInt()
+    }
+
+    fun tapOnUpdateFab() {
+        tapOnElement(fab)
     }
 
 }
