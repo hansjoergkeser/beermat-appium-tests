@@ -92,11 +92,11 @@ class StartPageTests {
             "/data/data/de.hajo.beermat/databases/beermat-database.db",
             "\"UPDATE Beermat SET amount = $amount, price = $price, total_price = $totalPrice\""
         )
-        val manipulateFavouriteItemPricesCmd = ImmutableMap.of(
+        val manipulateItemPricesCmd = ImmutableMap.of(
             "command", "sqlite3",
             "args", updateTableArgs
         )
-        driver.executeScript("mobile: shell", manipulateFavouriteItemPricesCmd)
+        driver.executeScript("mobile: shell", manipulateItemPricesCmd)
     }
 
     private fun createAndSaveScreenshot(fileName: String) {
