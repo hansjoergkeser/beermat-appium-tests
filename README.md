@@ -48,9 +48,9 @@ for getting screenshots that underline your apps coolest and most important feat
 
 Imagine your app had features that required an user account, what were the precondition to get lists with product data which relied on live data.<br>
 Imagine these lists had several features which only appeared if the product data would be in a certain condition, like a price drop.<br>
-You could let your appium tests execute all these UI actions which would cause real api requests on production... no good choice.
+You could let your appium tests execute all these UI actions which would cause real api requests on production... no good choice.<br>
 Or you could mock the app api requests, but who'd do that just to get screenshots?!<br>
-Or you could just insert the necessary data in the app's database tables... sounds clean and easy to me.<br>
+Or you could just insert the necessary data in the app's database tables as described above... sounds clean and easy to me.<br>
 Well...easy as soon as the initial setup is done once :-)
 
 ### How to execute the tests of this project
