@@ -30,6 +30,7 @@ Then we just hit the refresh FAB and voila... the view is ready for the screensh
 No additional UI interaction needed, the app gets the desired data straight from the database.
 
 Preconditions:
+- works only with debug builds <br>(you can't just download and extract an android app release build from your phone)
 - Device or emulator must have root rights
 - Appium server must run with --relaxed-security flag
 - You must know the structure of your app database and adjust your insert or update SQL statement accordingly
