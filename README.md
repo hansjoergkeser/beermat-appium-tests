@@ -3,7 +3,7 @@
 Appium tests showing the power of manipulating the SQLite database of an Android sample app.
 
 This sample project may help QA engineers and in general developers in the Android mobile app area.
-The main idea consists of saving time during taking screenshots of an Android App to be presented on Google Play.
+The main idea consists of saving time during taking screenshots of an Android app to be presented on Google Play.
 
 The idea for this project came up by one of the inspiring newsletters from Jonathan Lipps:<br>
 [Appium Pro Edition 3](https://appiumpro.com/editions/3)
@@ -37,7 +37,13 @@ Preconditions:
 
 Check the updateDataInTable() method in the StartPageTests class
 
-### Side notes:
+### Benefits
+
+- This approach saves time during taking screenshots
+- Gives more flexibility to prepare certain situations in the app, which would originally rely on data in server responses
+  <br>(for more details, check the following side notes)
+
+### Side notes
 
 This sample app is a very clean app at beginner level. Its purpose is to show the advantage of database manipulation in this context.
 If you think of bigger apps out there in the market, you'd probably have to do lots of UI interactions, swiping, tapping, etc.
@@ -47,10 +53,10 @@ This approach with adb shell sqlite3 commands does not only save time, it gives 
 for getting screenshots that underline your apps coolest and most important features.
 
 Imagine your app had features that required an user account, what were the precondition to get lists with product data which relied on live data.<br>
-Imagine these lists had several features which only appeared if the product data would be in a certain condition, like a price drop.<br>
-You could let your Appium tests execute all these UI actions which would cause real api requests on production... no good choice.<br>
-Or you could mock the app api requests, but who'd do that just to get screenshots?!<br>
-Or you could just insert the necessary data in the app's database tables as described above... sounds clean and easy to me.<br>
+Imagine these lists had several features which only appeared if the product data would be in a certain condition, like a price drop:<br>
+- You could let your Appium tests execute all these UI actions which would cause real api requests on production... no good choice.<br>
+- Or you could mock the app api requests in the app or in the related backends... but who'd do that just to get screenshots?!<br>
+- Or you could just insert the necessary data in the app's database tables as described above... sounds clean and easy to me.<br>
 Well...easy as soon as the initial setup is done once :-)
 
 ### How to execute the tests of this project
