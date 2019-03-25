@@ -1,6 +1,6 @@
 # Beermat Appium Tests
 
-Appium tests showing the power of manipulating the sqlite database of an Android sample app.
+Appium tests showing the power of manipulating the SQLite database of an Android sample app.
 
 This sample project may help QA engineers and in general developers in the Android mobile app area.
 The main idea consists of saving time during taking screenshots of an Android App to be presented on the Google Play Store.
@@ -8,7 +8,7 @@ The main idea consists of saving time during taking screenshots of an Android Ap
 The idea for this project came up by one of the inspiring newsletters from Jonathan Lipps:<br>
 [Appium Pro Edition 3](https://appiumpro.com/editions/3)
 
-A lot of apps locally save items and certain data of their features in a sqlite3 database.
+A lot of apps locally save items and certain data of their features in a SQLite database.
 Having the debug build of the app, one can use SQL statements to manipulate these stored data before taking a screenshot.
 
 ### The app and the tests to make the screenshots
