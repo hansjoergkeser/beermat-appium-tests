@@ -3,7 +3,7 @@
 Appium tests showing the power of manipulating the SQLite database of an Android sample app.
 
 This sample project may help QA engineers and in general developers in the Android mobile app area.
-The main idea consists of saving time during taking screenshots of an Android App to be presented on the Google Play Store.
+The main idea consists of saving time during taking screenshots of an Android App to be presented on Google Play.
 
 The idea for this project came up by one of the inspiring newsletters from Jonathan Lipps:<br>
 [Appium Pro Edition 3](https://appiumpro.com/editions/3)
@@ -30,7 +30,7 @@ Then we just hit the refresh FAB and voila... the view is ready for the screensh
 No additional UI interaction needed, the app gets the desired data straight from the database.
 
 Preconditions:
-- works only with debug builds <br>(you can't just download and extract an android app release build from your phone)
+- works only with debug builds <br>(you can't just download and extract an Android app release build from your phone)
 - Device or emulator must have root rights
 - Appium server must run with --relaxed-security flag
 - You must know the structure of your app database and adjust your insert or update SQL statement accordingly
