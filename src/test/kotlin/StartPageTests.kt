@@ -61,6 +61,10 @@ class StartPageTests {
             val startPage = StartPage()
             startPage.insertNewPrice("1.99")
             startPage.addBeers(19)
+            try {
+                driver.hideKeyboard()
+            } catch (e: Exception) {
+            }
             val expectedAmount = 20
             val expectedTotalPrice = 3980
             assertEquals(
