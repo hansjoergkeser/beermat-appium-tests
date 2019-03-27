@@ -4,6 +4,7 @@ import io.appium.java_client.AppiumDriver
 import org.junit.jupiter.api.*
 import org.junit.jupiter.api.Assertions.assertEquals
 import org.openqa.selenium.OutputType
+import org.openqa.selenium.WebDriverException
 import org.openqa.selenium.WebElement
 import pages.StartPage
 import java.io.BufferedReader
@@ -60,11 +61,12 @@ class StartPageTests {
         val duration = measureTimeMillis {
             val startPage = StartPage()
             startPage.insertNewPrice("1.99")
-            startPage.addBeers(19)
             try {
                 driver.hideKeyboard()
-            } catch (e: Exception) {
+            } catch (w: WebDriverException) {
+                // emulator may use different keyboard
             }
+            startPage.addBeers(19)
             val expectedAmount = 20
             val expectedTotalPrice = 3980
             assertEquals(
