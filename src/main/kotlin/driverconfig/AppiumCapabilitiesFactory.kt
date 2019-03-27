@@ -47,7 +47,7 @@ class AppiumCapabilitiesFactory {
 
                 // use this capability for debugging, it gives you more time until appium server shutdown
                 // if no new commands are sent to device/emulator in the declared amount of time
-                setCapability(MobileCapabilityType.NEW_COMMAND_TIMEOUT, 600)
+//                setCapability(MobileCapabilityType.NEW_COMMAND_TIMEOUT, 600)
             }
 
         }
