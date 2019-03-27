@@ -1,19 +1,19 @@
 # Beermat Appium Tests
 
-Appium tests showing the power of manipulating the SQLite database of an Android sample app.
+Appium tests that show the power of manipulating the SQLite database of an Android sample app.
 
 This sample project may help QA engineers and in general developers in the Android mobile app area.
-The main idea consists of saving time during taking screenshots of an Android app to be presented on Google Play.
+The main idea consists of saving time during the taking of screenshots of an Android app to be presented on Google Play.
 
-The idea for this project came up by one of the inspiring newsletters from Jonathan Lipps:<br>
+The idea for this project was inspired by one of the newsletters from Jonathan Lipps:<br>
 [Appium Pro Edition 3](https://appiumpro.com/editions/3)
 
-A lot of apps locally save items and certain data of their features in a SQLite database.
-Having the debug build of the app, one can use SQL statements to manipulate these stored data before taking a screenshot.
+A lot of apps save items and certain data of their features locally in a SQLite database.
+Having the debug build of the app, one can use SQL statements to manipulate this stored data before taking a screenshot.
 
 ### The app and the tests to make the screenshots
 
-The sample app in this project displays a beermat, having a simple notepad for how man drinks you had and the price for them.
+The sample app in this project displays a beer mat, having a simple notepad for how many drinks you had and the price for them.
 Given I wanted to prepare a beermat with 20 beers for 1,99 Eur in the list, I would use a standard Appium test to prepare the app:
 - Tap on the price
 - Insert new price
@@ -25,7 +25,7 @@ This takes a lot of time, so I'd prefer a shorter way by updating the related da
 
 ### The solution
 
-Before taking the screenshot lets execute an adb shell command to get the app database table in the state we want it to be.
+Before taking the screenshot let's execute an adb shell command to get the app database table in the state we want it to be.
 Then we just hit the refresh FAB and voila... the view is ready for the screenshot.
 No additional UI interaction needed, the app gets the desired data straight from the database.
 
@@ -50,11 +50,11 @@ If you think of bigger apps out there in the market, you'd probably have to do l
 to get app views ready for getting the desired screenshots.
 
 This approach with adb shell sqlite3 commands does not only save time, it gives you more flexibility and opportunities<br>
-for getting screenshots that underline your apps coolest and most important features.
+for getting screenshots that underline your app's coolest and most important features.
 
-Imagine your app had features that required an user account, what were the precondition to get lists with product data which relied on live data.<br>
+Imagine your app had features that required an user account, what were the preconditions to get lists with product data which relied on live data.<br>
 Imagine these lists had several features which only appeared if the product data would be in a certain condition, like a price drop:<br>
-- You could let your Appium tests execute all these UI actions which would cause real api requests on production... no good choice.<br>
+- You could let your Appium tests execute all these UI actions which would cause real api requests on production... not a good choice.<br>
 - Or you could mock the app api requests in the app or in the related backends... but who'd do that just to get screenshots?!<br>
 - Or you could just insert the necessary data in the app's database tables as described above... sounds clean and easy to me.<br>
 Well...easy as soon as the initial setup is done once :-)
@@ -92,7 +92,7 @@ Find the created screenshots in your user's home directory under appium-screensh
 <br>e.g.<br>
 /Users/MY.USER/appium-screenshots/get screenshot the fast way().png
 
-The created screenshots should like the one saved in this project under app/
+The created screenshots should look like the one saved in this project under app/
 
 ### Obstacles
 
