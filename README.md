@@ -40,6 +40,7 @@ Check the updateDataInTable() method in the StartPageTests class
 ### Benefits
 
 - This approach saves time during taking screenshots
+  <br>(2 seconds for the "fast way" versus 18 seconds "the bad way")
 - Gives more flexibility to prepare certain situations in the app, which would originally rely on data in server responses
   <br>(for more details, check the following side notes)
 

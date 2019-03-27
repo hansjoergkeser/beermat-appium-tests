@@ -13,6 +13,7 @@ import java.io.InputStreamReader
 import java.util.Arrays.asList
 import java.util.concurrent.TimeUnit
 import java.util.logging.Logger
+import kotlin.system.measureTimeMillis
 
 /**
  *  @author hansjoerg.keser
@@ -50,36 +51,43 @@ class StartPageTests {
         val testName = testInfo.displayName
         logger.info("Taking screenshot after test: [$testName]")
         createAndSaveScreenshot(testName)
+        MyAppiumDriver.Driver.resetApp()
     }
 
     // don't try this at home... or rather your local pub ;-)
     @Test
     fun `get special price as regular customer and drink 20 beers`() {
-        val startPage = StartPage()
-        startPage.insertNewPrice("1.99")
-        startPage.addBeers(19)
-        driver.hideKeyboard()
-        val expectedAmount = 20
-        val expectedTotalPrice = 3980
-        assertEquals(
-            expectedAmount,
-            startPage.getAmount(),
-            "Did not find the expected amount of [$expectedAmount] \uD83C\uDF7A"
-        )
-        assertEquals(
-            expectedTotalPrice,
-            startPage.getTotalPrice(),
-            "Did not find the expected total price of [$expectedTotalPrice]."
-        )
+        val duration = measureTimeMillis {
+            val startPage = StartPage()
+            startPage.insertNewPrice("1.99")
+            startPage.addBeers(19)
+            val expectedAmount = 20
+            val expectedTotalPrice = 3980
+            assertEquals(
+                expectedAmount,
+                startPage.getAmount(),
+                "Did not find the expected amount of [$expectedAmount] \uD83C\uDF7A"
+            )
+            assertEquals(
+                expectedTotalPrice,
+                startPage.getTotalPrice(),
+                "Did not find the expected total price of [$expectedTotalPrice]."
+            )
+
+        }
+        logger.info("Duration in milli seconds: [$duration]")
     }
 
     @Test
     fun `get screenshot the fast way`() {
-        restartEmulatorRooted()
-        updateDataInTable("20", "199", "3980")
-        StartPage().tapOnUpdateFab()
-        // wait a sec, the app has no loading indicator
-        Thread.sleep(1000)
+        val duration = measureTimeMillis {
+            restartEmulatorRooted()
+            updateDataInTable("20", "199", "3980")
+            StartPage().tapOnUpdateFab()
+            // wait a sec, the app has no loading indicator
+            Thread.sleep(1000)
+        }
+        logger.info("Duration in milli seconds: [$duration]")
     }
 
     /**
