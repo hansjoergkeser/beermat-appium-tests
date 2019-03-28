@@ -129,7 +129,12 @@ class StartPageTests {
     }
 
     /**
-     * check the column names by executing in terminal: adb shell 'sqlite3 /data/data/de.hajo.beermat/databases/beermat-database.db ".schema"'
+     * check all the table names and structure by executing in terminal:
+     * adb shell 'sqlite3 /data/data/de.hajo.beermat/databases/beermat-database.db ".schema"'
+     *
+     * or
+     * check specific table, e.g. favourites:
+     * adb shell 'sqlite3 /data/data/de.hajo.beermat/databases/beermat-database.db "PRAGMA table_info(favorites)"'
      *
      * @amount: the amount of beers
      * @price: the beer price;
