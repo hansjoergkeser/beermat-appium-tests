@@ -5,7 +5,6 @@ import org.junit.jupiter.api.fail
 import org.openqa.selenium.By
 import org.openqa.selenium.NoSuchElementException
 import org.openqa.selenium.WebElement
-import java.util.logging.Logger
 
 /**
  *  @author hansjoerg.keser
