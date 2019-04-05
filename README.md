@@ -74,6 +74,7 @@ To run the tests locally:
 ```
 
 Optional:
+- you may import the attached Codingstyle.xml in IntelliJ
 - start rooted emulator or rooted real device with different Android version and prepare the env variable <br>-Dandroid.version=
 - check the device name by executing "adb devices" in terminal and prepare the env variable <br>-Ddevice.name=
 - tell Appium the endpoint, whether to execute the tests locally or on other test hubs like Saucelabs, Testobject, etc. <br>-Dhub=
