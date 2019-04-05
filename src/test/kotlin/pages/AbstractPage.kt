@@ -1,6 +1,6 @@
 package pages
 
-import io.appium.java_client.android.AndroidDriver
+import driverconfig.MyAppiumDriver.driver
 import org.junit.jupiter.api.fail
 import org.openqa.selenium.By
 import org.openqa.selenium.NoSuchElementException
@@ -28,11 +28,9 @@ import org.openqa.selenium.WebElement
  */
 abstract class AbstractPage {
 
-    abstract fun getAppiumDriver(): AndroidDriver<WebElement>
-
     protected fun findElement(selector: By): WebElement {
         try {
-            return getAppiumDriver().findElement(selector)
+            return driver.findElement(selector)
         } catch (n: NoSuchElementException) {
             fail("Did not find element with the following selector: $selector")
         }
@@ -40,7 +38,7 @@ abstract class AbstractPage {
 
     protected fun getText(selector: By): String {
         try {
-            return getAppiumDriver().findElement(selector).text
+            return driver.findElement(selector).text
         } catch (n: NoSuchElementException) {
             fail("Did not find the element to get its text using the following selector: $selector")
         }
@@ -48,7 +46,7 @@ abstract class AbstractPage {
 
     protected fun tapOnElement(selector: By) {
         try {
-            getAppiumDriver().findElement(selector).click()
+            driver.findElement(selector).click()
         } catch (n: NoSuchElementException) {
             fail("Did not find element with the following selector: $selector")
         }

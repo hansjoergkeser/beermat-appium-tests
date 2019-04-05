@@ -1,18 +1,14 @@
 import com.google.common.collect.ImmutableMap
-import driverconfig.MyAppiumDriver
-import io.appium.java_client.AppiumDriver
-import org.junit.jupiter.api.*
+import driverconfig.AbstractTestSetup
+import driverconfig.MyAppiumDriver.driver
 import org.junit.jupiter.api.Assertions.assertEquals
-import org.openqa.selenium.OutputType
+import org.junit.jupiter.api.Test
 import org.openqa.selenium.WebDriverException
-import org.openqa.selenium.WebElement
 import pages.StartPage
 import java.io.BufferedReader
-import java.io.File
 import java.io.IOException
 import java.io.InputStreamReader
 import java.util.Arrays.asList
-import java.util.concurrent.TimeUnit
 import java.util.logging.Logger
 import kotlin.system.measureTimeMillis
 
@@ -20,40 +16,9 @@ import kotlin.system.measureTimeMillis
  *  @author hansjoerg.keser
  *  @since 2019-03-09
  */
-class StartPageTests {
+class StartPageTests : AbstractTestSetup() {
 
     private val logger = Logger.getLogger(StartPageTests::class.toString())
-
-    companion object {
-
-        private lateinit var driver: AppiumDriver<WebElement>
-
-        @BeforeAll
-        @JvmStatic
-        fun setup() {
-            driver = MyAppiumDriver.Driver
-
-            // give the app views some time to get loaded; this setting affects all selenium finding methods
-            driver.manage().timeouts().implicitlyWait(3, TimeUnit.SECONDS)
-        }
-
-        // let the following test classes create a new session, makes it easier to identify videos on testobject/saucelabs
-        @AfterAll
-        @JvmStatic
-        fun tearDown() {
-            MyAppiumDriver.Driver.quit()
-        }
-
-    }
-
-    // get test name by junit 5 test info to give the screenshot an unique title
-    @AfterEach
-    fun takeScreenshot(testInfo: TestInfo) {
-        val testName = testInfo.displayName
-        logger.info("Taking screenshot after test: [$testName]")
-        createAndSaveScreenshot(testName)
-        MyAppiumDriver.Driver.resetApp()
-    }
 
     // don't try this at home... or rather your local pub ;-)
     @Test
@@ -157,15 +122,8 @@ class StartPageTests {
             "command", "sqlite3",
             "args", updateTableArgs
         )
-        driver.executeScript("mobile: shell", manipulateItemPricesCmd)
-    }
 
-    private fun createAndSaveScreenshot(fileName: String) {
-        val screenshotByteArray = driver.getScreenshotAs(OutputType.BYTES)
-        val targetDir = System.getProperty("user.home") + "/appium-screenshots/"
-        File(targetDir).mkdir()
-        val userDir = "$targetDir$fileName.png"
-        File(userDir).writeBytes(screenshotByteArray)
+        driver.executeScript("mobile: shell", manipulateItemPricesCmd)
     }
 
 }

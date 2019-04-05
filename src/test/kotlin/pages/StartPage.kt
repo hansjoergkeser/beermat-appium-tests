@@ -1,19 +1,12 @@
 package pages
 
-import driverconfig.MyAppiumDriver
-import io.appium.java_client.android.AndroidDriver
 import org.openqa.selenium.By.id
-import org.openqa.selenium.WebElement
 
 /**
  *  @author hansjoerg.keser
  *  @since 2019-03-09
  */
 class StartPage : AbstractPage() {
-
-    override fun getAppiumDriver(): AndroidDriver<WebElement> {
-        return MyAppiumDriver.Driver
-    }
 
     private val itemName = id("tv_beer")
     private val amount = id("tv_beer_count")
