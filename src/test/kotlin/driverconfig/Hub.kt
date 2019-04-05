@@ -1,5 +1,6 @@
 package driverconfig
 
+import java.net.URL
 import java.util.logging.Logger
 
 /**
@@ -8,31 +9,34 @@ import java.util.logging.Logger
  */
 class Hub {
 
-    enum class Endpoint(val urlString: String) {
-        LOCAL("http://localhost:4723/wd/hub"),
-        TESTOBJECT("http://to..."),
-        SAUCELABS("http://sl....")
-    }
+	enum class Endpoint(val urlString: String) {
+		LOCAL("http://localhost:4723/wd/hub"),
+		TESTOBJECT("http://to..."),
+		SAUCELABS("http://sl....")
+	}
 
-    companion object {
+	companion object {
 
-        fun getHub(): String {
+		fun getHub(): Endpoint {
 			System.getProperty("hub", "local").let {
-                return when (it.toLowerCase()) {
-                    "local" -> Endpoint.LOCAL.urlString
-                    "testobject" -> Endpoint.TESTOBJECT.urlString
-                    "saucelabs" -> Endpoint.SAUCELABS.urlString
-                    else -> {
-                        Logger.getLogger("Hub").warning(
-                                "Could not process given hub value for appium driver endpoint, setting hub to local."
-                        )
-                        Endpoint.LOCAL.urlString
-                    }
-                }
-            }
+				return when (it.toLowerCase()) {
+					"local" -> Endpoint.LOCAL
+					"testobject" -> Endpoint.TESTOBJECT
+					"saucelabs" -> Endpoint.SAUCELABS
+					else -> {
+						Logger.getLogger("Hub").warning(
+								"Could not process given hub value for appium driver endpoint, setting hub to local."
+						)
+						Endpoint.LOCAL
+					}
+				}
+			}
 
-        }
+		}
 
-    }
+	}
 
 }
+
+// extension function to be used instead of URL(Hub.getHub())
+fun Hub.Endpoint.toUrl() = URL(this.urlString)
