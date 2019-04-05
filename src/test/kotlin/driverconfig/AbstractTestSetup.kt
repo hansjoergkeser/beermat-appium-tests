@@ -20,16 +20,20 @@ abstract class AbstractTestSetup {
 
 	private val logger = Logger.getLogger(AbstractTestSetup::class.toString())
 
-	@BeforeAll
-	fun setup() {
-		// give the app views some time to get loaded; this setting affects all selenium finding methods
-		driver.manage().timeouts().implicitlyWait(3, TimeUnit.SECONDS)
-	}
+	companion object {
 
-	// let the following test classes create a new session, makes it easier to identify videos on testobject/saucelabs
-	@AfterAll
-	fun tearDown() {
-		driver.quit()
+		@BeforeAll
+		fun setup() {
+			// give the app views some time to get loaded; this setting affects all selenium finding methods
+			driver.manage().timeouts().implicitlyWait(3, TimeUnit.SECONDS)
+		}
+
+		// let the following test classes create a new session, makes it easier to identify videos on testobject/saucelabs
+		@AfterAll
+		fun tearDown() {
+			driver.quit()
+		}
+
 	}
 
 	// get test name by junit 5 test info to give the screenshot an unique title

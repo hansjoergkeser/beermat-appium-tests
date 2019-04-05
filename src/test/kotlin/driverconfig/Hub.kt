@@ -17,7 +17,7 @@ class Hub {
     companion object {
 
         fun getHub(): String {
-            System.getProperty("hub", Endpoint.LOCAL.urlString).let {
+			System.getProperty("hub", "local").let {
                 return when (it.toLowerCase()) {
                     "local" -> Endpoint.LOCAL.urlString
                     "testobject" -> Endpoint.TESTOBJECT.urlString

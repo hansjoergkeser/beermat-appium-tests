@@ -39,7 +39,7 @@ class AppiumCapabilitiesFactory {
             setCapability("appActivity", "de.hajo.beermat.MainActivity")
             setCapability("appWaitActivity", "de.hajo.beermat.MainActivity")
 
-            setCapability(MobileCapabilityType.APP, System.getProperty("app.path"))
+            setCapability(MobileCapabilityType.APP, System.getenv("app.path"))
 
             // signing not necessary anymore, see https@ //discuss.appium.io/t/why-does-appium-sign-the-apk-are-there-any-benefits/7434/2
             setCapability("noSign", true)

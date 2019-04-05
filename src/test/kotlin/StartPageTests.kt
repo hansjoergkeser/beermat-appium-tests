@@ -13,6 +13,12 @@ import kotlin.system.measureTimeMillis
  *  @since 2019-03-09
  */
 class StartPageTests : AbstractTestSetup() {
+	/**
+	 * TODO: try out...
+	 * ...different logger
+	 * ...assertK
+	 * ...fluentlenium
+	 */
 
 	private val logger = Logger.getLogger(StartPageTests::class.toString())
 
