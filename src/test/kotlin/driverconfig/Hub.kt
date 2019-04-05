@@ -24,7 +24,7 @@ class Hub {
                     "saucelabs" -> Endpoint.SAUCELABS.urlString
                     else -> {
                         Logger.getLogger("Hub").warning(
-                            "Could not process given hub value for appium driver endpoint, setting hub to local."
+                                "Could not process given hub value for appium driver endpoint, setting hub to local."
                         )
                         Endpoint.LOCAL.urlString
                     }

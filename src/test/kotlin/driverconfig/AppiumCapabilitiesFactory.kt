@@ -25,8 +25,8 @@ class AppiumCapabilitiesFactory {
 
             // you can check the device name by executing "adb devices" in terminal
             setCapability(
-                MobileCapabilityType.DEVICE_NAME, if (System.getProperty("device.name").isNullOrEmpty())
-                    "emulator" else System.getProperty("device.name").isNullOrEmpty()
+                    MobileCapabilityType.DEVICE_NAME, if (System.getProperty("device.name").isNullOrEmpty())
+                "emulator" else System.getProperty("device.name").isNullOrEmpty()
             )
 
             // set optional platform version capability to filter out other devices/emulators with different os versions

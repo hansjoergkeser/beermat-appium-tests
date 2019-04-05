@@ -18,35 +18,35 @@ import java.util.logging.Logger
  */
 abstract class AbstractTestSetup {
 
-    private val logger = Logger.getLogger(AbstractTestSetup::class.toString())
+	private val logger = Logger.getLogger(AbstractTestSetup::class.toString())
 
-    @BeforeAll
-    fun setup() {
-        // give the app views some time to get loaded; this setting affects all selenium finding methods
-        driver.manage().timeouts().implicitlyWait(3, TimeUnit.SECONDS)
-    }
+	@BeforeAll
+	fun setup() {
+		// give the app views some time to get loaded; this setting affects all selenium finding methods
+		driver.manage().timeouts().implicitlyWait(3, TimeUnit.SECONDS)
+	}
 
-    // let the following test classes create a new session, makes it easier to identify videos on testobject/saucelabs
-    @AfterAll
-    fun tearDown() {
-        driver.quit()
-    }
+	// let the following test classes create a new session, makes it easier to identify videos on testobject/saucelabs
+	@AfterAll
+	fun tearDown() {
+		driver.quit()
+	}
 
-    // get test name by junit 5 test info to give the screenshot an unique title
-    @AfterEach
-    fun takeScreenshot(testInfo: TestInfo) {
-        val testName = testInfo.displayName
-        logger.info("Taking screenshot after test: [$testName]")
-        createAndSaveScreenshot(testName)
-        driver.resetApp()
-    }
+	// get test name by junit 5 test info to give the screenshot an unique title
+	@AfterEach
+	fun takeScreenshot(testInfo: TestInfo) {
+		val testName = testInfo.displayName
+		logger.info("Taking screenshot after test: [$testName]")
+		createAndSaveScreenshot(testName)
+		driver.resetApp()
+	}
 
-    private fun createAndSaveScreenshot(fileName: String) {
-        val screenshotByteArray = driver.getScreenshotAs(OutputType.BYTES)
-        val targetDir = System.getProperty("user.home") + "/appium-screenshots/"
-        File(targetDir).mkdir()
-        val userDir = "$targetDir$fileName.png"
-        File(userDir).writeBytes(screenshotByteArray)
-    }
+	private fun createAndSaveScreenshot(fileName: String) {
+		val screenshotByteArray = driver.getScreenshotAs(OutputType.BYTES)
+		val targetDir = System.getProperty("user.home") + "/appium-screenshots/"
+		File(targetDir).mkdir()
+		val userDir = "$targetDir$fileName.png"
+		File(userDir).writeBytes(screenshotByteArray)
+	}
 
 }

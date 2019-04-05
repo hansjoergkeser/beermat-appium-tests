@@ -12,6 +12,6 @@ import java.net.URL
  */
 object MyAppiumDriver {
 
-    val driver = AndroidDriver<WebElement>(URL(Hub.getHub()), AppiumCapabilitiesFactory().getDesiredCapabilities())
+	val driver = AndroidDriver<WebElement>(URL(Hub.getHub()), AppiumCapabilitiesFactory().getDesiredCapabilities())
 
 }
