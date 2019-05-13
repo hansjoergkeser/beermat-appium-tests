@@ -3,7 +3,8 @@
 Appium tests that show the power of manipulating the SQLite database of an Android sample app.
 
 This sample project may help QA engineers and in general developers in the Android mobile app area.
-The main idea consists of saving time during the taking of screenshots of an Android app to be presented on Google Play.
+The main idea consists of saving time and faking conditions without mocks <br>
+during the taking of screenshots of an Android app to be presented on Google Play.
 
 The idea for this project was inspired by one of the newsletters from Jonathan Lipps:<br>
 [Appium Pro Edition 3](https://appiumpro.com/editions/3)
