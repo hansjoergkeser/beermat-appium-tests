@@ -11,6 +11,12 @@ import org.openqa.selenium.WebElement
  */
 object MyAppiumDriver {
 
-	val driver = AndroidDriver<WebElement>(Hub.getHub().toUrl(), AppiumCapabilitiesFactory().getDesiredCapabilities())
+	val driver = if (Hub.getHub().equals(Hub.Endpoint.SAUCELABS)) {
+		AndroidDriver(Hub.getHub().toUrl(),
+				AppiumCapabilitiesFactory().getSaucelabsCapabilities())
+	} else {
+		AndroidDriver<WebElement>(Hub.getHub().toUrl(),
+				AppiumCapabilitiesFactory().getDesiredCapabilities())
+	}
 
 }

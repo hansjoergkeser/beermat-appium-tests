@@ -1,7 +1,9 @@
 package driverconfig
 
 import io.appium.java_client.remote.MobileCapabilityType
+import org.openqa.selenium.MutableCapabilities
 import org.openqa.selenium.remote.DesiredCapabilities
+
 
 /**
  *  @author hansjoerg.keser
@@ -17,8 +19,19 @@ import org.openqa.selenium.remote.DesiredCapabilities
  */
 class AppiumCapabilitiesFactory {
 
-    fun getDesiredCapabilities(): DesiredCapabilities {
+    fun getSaucelabsCapabilities(): MutableCapabilities {
+        return MutableCapabilities().apply {
+            setCapability("platformName", "Android")
+            setCapability("appium:app", "storage:filename=app-debug.apk")
+            setCapability("appium:deviceName", "Google Pixel 4a (5G) GoogleAPI Emulator")
+            setCapability("appium:platformVersion", "12.0")
+            val sauceOptions = MutableCapabilities()
+            sauceOptions.setCapability("appiumVersion", "1.22.1")
+            setCapability("sauce:options", sauceOptions)
+        }
+    }
 
+    fun getDesiredCapabilities(): DesiredCapabilities {
         return DesiredCapabilities().apply {
             setCapability(MobileCapabilityType.PLATFORM_NAME, "Android")
             setCapability(MobileCapabilityType.AUTOMATION_NAME, "UiAutomator2")
@@ -48,7 +61,6 @@ class AppiumCapabilitiesFactory {
             // if no new commands are sent to device/emulator in the declared amount of time
 //                setCapability(MobileCapabilityType.NEW_COMMAND_TIMEOUT, 600)
         }
-
     }
 
 }

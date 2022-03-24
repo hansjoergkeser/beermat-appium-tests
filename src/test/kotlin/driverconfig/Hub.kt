@@ -12,19 +12,24 @@ class Hub {
 	enum class Endpoint(val urlString: String) {
 		LOCAL("http://localhost:4723/wd/hub"),
 		TESTOBJECT("http://to..."),
-		SAUCELABS("http://sl....")
+		SAUCELABS("https://" + "ENTER_CREDENTIALS_HERE" + "@ondemand.eu-central-1.saucelabs.com:443/wd/hub")
 	}
 
 	companion object {
+		val HUB = "hub";
+		val LOCAL = "local";
 
 		fun getHub(): Endpoint {
-			System.getProperty("hub", "local").let {
+
+			System.getProperty(HUB, LOCAL).let {
+				Logger.getLogger(HUB).info("Chosen hub: $it")
+
 				return when (it.toLowerCase()) {
-					"local" -> Endpoint.LOCAL
+					LOCAL -> Endpoint.LOCAL
 					"testobject" -> Endpoint.TESTOBJECT
 					"saucelabs" -> Endpoint.SAUCELABS
 					else -> {
-						Logger.getLogger("Hub").warning(
+						Logger.getLogger(HUB).warning(
 								"Could not process given hub value for appium driver endpoint, setting hub to local."
 						)
 						Endpoint.LOCAL
